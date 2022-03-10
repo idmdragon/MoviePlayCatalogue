@@ -14,3 +14,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MoviePlay"
 include ':app'
+include ':data'
+include ':domain'
+include ':features:movie'
+include ':features:tv'
+include ':features:people'
+include ':features:search'
+include ':base_ui'

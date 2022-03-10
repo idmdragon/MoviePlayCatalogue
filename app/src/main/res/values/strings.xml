@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoviePlay</string>
+    <string name="title_movie">Module Movie</string>
+    <string name="title_tv">Module Tv</string>
+    <string name="title_people">Module People</string>
+    <string name="title_search">Module Search</string>
 </resources>

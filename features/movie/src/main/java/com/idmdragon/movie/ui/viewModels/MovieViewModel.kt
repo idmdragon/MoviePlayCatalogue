@@ -1,4 +1,4 @@
-package com.idmdragon.movie.ui
+package com.idmdragon.movie.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 

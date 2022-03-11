@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">MoviePlay</string>
-    <string name="title_movie">Module Movie</string>
-    <string name="title_tv">Module Tv</string>
-    <string name="title_people">Module People</string>
-    <string name="title_search">Module Search</string>
+    <string name="title_movie">Movie</string>
+    <string name="title_tv">Series</string>
+    <string name="title_people">People</string>
+    <string name="title_search">Search</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>

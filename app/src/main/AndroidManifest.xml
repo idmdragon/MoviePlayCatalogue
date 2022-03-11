@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviePlay">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

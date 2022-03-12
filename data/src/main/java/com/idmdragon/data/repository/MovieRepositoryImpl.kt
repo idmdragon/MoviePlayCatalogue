@@ -5,10 +5,9 @@ import com.idmdragon.data.mapper.toFlowModel
 import com.idmdragon.data.mapper.toFlowModels
 import com.idmdragon.data.source.NetworkBoundResource
 import com.idmdragon.data.source.local.MovieLocal
-import com.idmdragon.data.source.local.entities.MovieEntities
 import com.idmdragon.data.source.remote.MovieRemote
 import com.idmdragon.data.source.remote.response.ApiResponse
-import com.idmdragon.data.source.remote.response.MovieResponse
+import com.idmdragon.data.source.remote.response.MovieTvResponse
 import com.idmdragon.data.utils.MovieType
 import com.idmdragon.domain.model.Movie
 import com.idmdragon.domain.repository.MovieRepository
@@ -21,17 +20,17 @@ class MovieRepositoryImpl(
 ) : MovieRepository {
 
     override fun getMovieNowPlaying(): Flow<Resource<List<Movie>>> =
-        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+        object : NetworkBoundResource<List<Movie>, List<MovieTvResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
                 local.getMovieNowPlaying().toFlowModels()
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
-            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieTvResponse>>> =
                 remote.getMovieNowPlaying()
 
-            override suspend fun saveCallResult(data: List<MovieResponse>) {
+            override suspend fun saveCallResult(data: List<MovieTvResponse>) {
                 data.map {
                     local.insertMovie(it.toEntities(MovieType.NOW_PLAYING.name))
                 }
@@ -39,17 +38,17 @@ class MovieRepositoryImpl(
         }.asFlow()
 
     override fun getMoviePopular(): Flow<Resource<List<Movie>>> =
-        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+        object : NetworkBoundResource<List<Movie>, List<MovieTvResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
                 local.getMoviePopular().toFlowModels()
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
-            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieTvResponse>>> =
                 remote.getMoviePopular()
 
-            override suspend fun saveCallResult(data: List<MovieResponse>) {
+            override suspend fun saveCallResult(data: List<MovieTvResponse>) {
                 data.map {
                     local.insertMovie(it.toEntities(MovieType.POPULAR.name))
                 }
@@ -57,17 +56,17 @@ class MovieRepositoryImpl(
         }.asFlow()
 
     override fun getMovieTopRated(): Flow<Resource<List<Movie>>> =
-        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+        object : NetworkBoundResource<List<Movie>, List<MovieTvResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
                 local.getMovieTopRated().toFlowModels()
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
-            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieTvResponse>>> =
                 remote.getMovieTopRated()
 
-            override suspend fun saveCallResult(data: List<MovieResponse>) {
+            override suspend fun saveCallResult(data: List<MovieTvResponse>) {
                 data.map {
                     local.insertMovie(it.toEntities(MovieType.TOP_RATED.name))
                 }
@@ -75,17 +74,17 @@ class MovieRepositoryImpl(
         }.asFlow()
 
     override fun getMovieUpcoming(): Flow<Resource<List<Movie>>> =
-        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+        object : NetworkBoundResource<List<Movie>, List<MovieTvResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
                 local.getMovieUpcoming().toFlowModels()
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
-            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieTvResponse>>> =
                 remote.getMovieUpcoming()
 
-            override suspend fun saveCallResult(data: List<MovieResponse>) {
+            override suspend fun saveCallResult(data: List<MovieTvResponse>) {
                 data.map {
                     local.insertMovie(it.toEntities(MovieType.UPCOMING.name))
                 }
@@ -93,17 +92,17 @@ class MovieRepositoryImpl(
         }.asFlow()
 
     override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<Movie>> =
-        object : NetworkBoundResource <Movie, MovieResponse>() {
+        object : NetworkBoundResource <Movie, MovieTvResponse>() {
             override fun loadFromDB(): Flow<Movie> =
                 local.getMovieDetail(movieId).toFlowModel()
 
             override fun shouldFetch(data: Movie?): Boolean =
                 data == null
 
-            override suspend fun createCall(): Flow<ApiResponse<MovieResponse>> =
+            override suspend fun createCall(): Flow<ApiResponse<MovieTvResponse>> =
                 remote.getMovieById(movieId)
 
-            override suspend fun saveCallResult(data: MovieResponse) {
+            override suspend fun saveCallResult(data: MovieTvResponse) {
                     local.insertMovie(data.toEntities(movieType))
             }
         }.asFlow()

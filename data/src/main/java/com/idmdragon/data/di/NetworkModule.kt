@@ -2,8 +2,10 @@ package com.idmdragon.data.di
 
 import com.idmdragon.data.BuildConfig
 import com.idmdragon.data.source.remote.MovieRemote
+import com.idmdragon.data.source.remote.PeopleRemote
 import com.idmdragon.data.source.remote.SearchRemote
 import com.idmdragon.data.source.remote.service.MovieService
+import com.idmdragon.data.source.remote.service.PeopleService
 import com.idmdragon.data.source.remote.service.SearchService
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -34,6 +36,9 @@ val retrofitModule = module {
     single {
         retrofit.create(SearchService::class.java)
     }
+    single {
+        retrofit.create(PeopleService::class.java)
+    }
 }
 
 val remoteSourceModule = module {
@@ -42,5 +47,8 @@ val remoteSourceModule = module {
     }
     single {
         SearchRemote(get())
+    }
+    single {
+        PeopleRemote(get())
     }
 }

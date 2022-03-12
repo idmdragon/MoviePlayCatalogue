@@ -15,4 +15,7 @@ class MovieViewModel(private val moviesUseCase: MovieUseCase) : ViewModel() {
 
     fun getMoviePopular() : LiveData<Resource<List<Movie>>> =
         moviesUseCase.getMoviePopular().asLiveData()
+
+    fun getMovieTopRated() : LiveData<Resource<List<Movie>>> =
+        moviesUseCase.getMovieTopRated().asLiveData()
 }

@@ -20,7 +20,7 @@ interface MovieService {
         api_key: String
     ): GeneralResponse<MovieResponse>
 
-    @GET("/3/movie/popular")
+    @GET("/3/movie/top_rated")
     suspend fun getMovieTopRated(
         @Query("api_key")
         api_key: String

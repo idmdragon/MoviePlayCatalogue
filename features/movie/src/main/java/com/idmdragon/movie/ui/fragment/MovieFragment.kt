@@ -103,6 +103,32 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
+        viewModel.getMovieTopRated().observe(viewLifecycleOwner){ resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterTopRated = MovieAdapterMedium(requireContext())
+                        binding.rvTopRated.apply {
+                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            adapterTopRated.addItems(listItem)
+                            adapter = adapterTopRated
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
         }
     }
 

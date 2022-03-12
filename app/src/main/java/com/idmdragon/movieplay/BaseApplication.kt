@@ -1,10 +1,8 @@
 package com.idmdragon.movieplay
 
 import android.app.Application
-import com.idmdragon.data.di.databaseModule
-import com.idmdragon.data.di.localSourceModule
-import com.idmdragon.data.di.remoteSourceModule
-import com.idmdragon.data.di.retrofitModule
+import com.idmdragon.data.di.*
+import com.idmdragon.domain.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
@@ -25,7 +23,9 @@ class BaseApplication : Application() {
                     retrofitModule,
                     remoteSourceModule,
                     databaseModule,
-                    localSourceModule
+                    localSourceModule,
+                    useCaseModule,
+                    repositoryModule
                 )
             )
         }

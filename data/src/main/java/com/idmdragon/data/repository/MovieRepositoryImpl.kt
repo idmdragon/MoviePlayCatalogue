@@ -22,7 +22,7 @@ class MovieRepositoryImpl(
     override fun getMovieNowPlaying(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> =
-                local.getPopularMovie().toFlowModels()
+                local.getMovieNowPlaying().toFlowModels()
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
@@ -37,9 +37,23 @@ class MovieRepositoryImpl(
             }
         }.asFlow()
 
-    override fun getMoviePopular(): Flow<Resource<List<Movie>>> {
-        TODO("Not yet implemented")
-    }
+    override fun getMoviePopular(): Flow<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override fun loadFromDB(): Flow<List<Movie>> =
+                local.getMoviePopular().toFlowModels()
+
+            override fun shouldFetch(data: List<Movie>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+                remote.getMoviePopular()
+
+            override suspend fun saveCallResult(data: List<MovieResponse>) {
+                data.map {
+                    local.insertMovie(it.toEntities(MovieType.POPULAR.name))
+                }
+            }
+        }.asFlow()
 
     override fun getMovieTopRated(): Flow<Resource<List<Movie>>> {
         TODO("Not yet implemented")

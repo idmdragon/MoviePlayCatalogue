@@ -17,5 +17,8 @@ interface MovieDao {
     suspend fun insertMovie(entities: MovieEntities)
 
     @Query("SELECT * FROM MovieEntities WHERE movie_type = :type")
-    fun getNowPlaying(type: String): Flow<List<MovieEntities>>
+    fun getMoviePopular(type: String): Flow<List<MovieEntities>>
+
+    @Query("SELECT * FROM MovieEntities WHERE movie_type = :type")
+    fun getMovieNowPlaying(type: String): Flow<List<MovieEntities>>
 }

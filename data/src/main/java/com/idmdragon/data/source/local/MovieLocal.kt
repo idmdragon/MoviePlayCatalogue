@@ -13,7 +13,9 @@ class MovieLocal (private val movieDao: MovieDao) {
     suspend fun insertMovie(entity: MovieEntities) =
         movieDao.insertMovie(entity)
 
-    fun getPopularMovie() : Flow<List<MovieEntities>> =
-        movieDao.getNowPlaying(MovieType.NOW_PLAYING.name)
+    fun getMoviePopular() : Flow<List<MovieEntities>> =
+        movieDao.getMoviePopular(MovieType.POPULAR.name)
 
+    fun getMovieNowPlaying() : Flow<List<MovieEntities>> =
+        movieDao.getMovieNowPlaying(MovieType.NOW_PLAYING.name)
 }

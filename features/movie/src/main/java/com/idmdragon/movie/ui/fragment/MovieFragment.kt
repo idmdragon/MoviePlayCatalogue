@@ -77,6 +77,32 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
+        viewModel.getMoviePopular().observe(viewLifecycleOwner){ resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterPopular = MovieAdapterMedium(requireContext())
+                        binding.rvPopular.apply {
+                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            adapterPopular.addItems(listItem)
+                            adapter = adapterPopular
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
         }
     }
 

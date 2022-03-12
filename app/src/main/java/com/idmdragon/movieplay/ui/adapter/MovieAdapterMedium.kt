@@ -24,7 +24,7 @@ class MovieAdapterMedium(private val context: Context) : BaseRecyclerViewAdapter
             with(item){
 
                 Glide.with(context)
-                    .load(BuildConfig.BASE_IMAGE_URL + poster_path)
+                    .load(BuildConfig.BASE_IMAGE_URL + posterPath)
                     .placeholder(ColorDrawable(ContextCompat.getColor(context, R.color.gray)))
                     .transform(CenterCrop(), RoundedCorners(10))
                     .into(ivPoster)

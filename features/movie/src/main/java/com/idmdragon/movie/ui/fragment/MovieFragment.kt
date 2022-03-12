@@ -1,7 +1,9 @@
 package com.idmdragon.movie.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseFragment
+import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movie.databinding.FragmentMovieBinding
 import com.idmdragon.movie.di.movieModule
 import com.idmdragon.movie.ui.viewModels.MovieViewModel
@@ -30,8 +32,8 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
 
     private fun setupRecyclerView(){
         binding.apply {
-             val adapterMedium = MovieAdapterMedium(requireContext())
              val adapterAdapterBig = MovieAdapterBig(requireContext())
+            val adapterMedium = MovieAdapterMedium(requireContext())
             adapterMedium.addItems(DummyData.generateListMovie())
             adapterAdapterBig.addItems(DummyData.generateListMovie())
 
@@ -40,7 +42,6 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             rvTopRated.adapter = adapterMedium
             rvUpComing.adapter = adapterMedium
 
-            rvNowPlaying.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvPopular.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvTopRated.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvUpComing.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -48,5 +49,35 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
         }
     }
 
+    override fun setUpObserver() {
+        super.setUpObserver()
+        viewModel.getMovieNowPlaying().observe(viewLifecycleOwner){ resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterNowPlaying = MovieAdapterBig(requireContext())
+                        binding.rvNowPlaying.apply {
+                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            adapterNowPlaying.addItems(listItem)
+                            adapter = adapterNowPlaying
+                        }
+                     }
+                }
+                is Resource.Loading -> {
 
-}
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
+        }
+    }
+
+

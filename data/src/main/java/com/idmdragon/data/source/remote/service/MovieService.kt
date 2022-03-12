@@ -26,7 +26,7 @@ interface MovieService {
         api_key: String
     ): GeneralResponse<MovieResponse>
 
-    @GET("/3/movie/popular")
+    @GET("/3/movie/upcoming")
     suspend fun getMovieUpcoming(
         @Query("api_key")
         api_key: String

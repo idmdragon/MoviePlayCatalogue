@@ -21,4 +21,7 @@ class MovieLocal(private val movieDao: MovieDao) {
 
     fun getMovieTopRated(): Flow<List<MovieEntities>> =
         movieDao.getMoviesByType(MovieType.TOP_RATED.name)
+
+    fun getMovieUpcoming(): Flow<List<MovieEntities>> =
+        movieDao.getMoviesByType(MovieType.UPCOMING.name)
 }

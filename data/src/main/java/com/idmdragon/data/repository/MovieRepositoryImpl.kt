@@ -73,7 +73,21 @@ class MovieRepositoryImpl(
             }
         }.asFlow()
 
-    override fun getMovieUpcoming(): Flow<Resource<List<Movie>>> {
-        TODO("Not yet implemented")
-    }
+    override fun getMovieUpcoming(): Flow<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override fun loadFromDB(): Flow<List<Movie>> =
+                local.getMovieUpcoming().toFlowModels()
+
+            override fun shouldFetch(data: List<Movie>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+                remote.getMovieUpcoming()
+
+            override suspend fun saveCallResult(data: List<MovieResponse>) {
+                data.map {
+                    local.insertMovie(it.toEntities(MovieType.UPCOMING.name))
+                }
+            }
+        }.asFlow()
 }

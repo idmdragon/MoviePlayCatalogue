@@ -26,26 +26,6 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
 
     override fun setUpView() {
         binding.apply {
-            setupRecyclerView()
-        }
-    }
-
-    private fun setupRecyclerView(){
-        binding.apply {
-             val adapterAdapterBig = MovieAdapterBig(requireContext())
-            val adapterMedium = MovieAdapterMedium(requireContext())
-            adapterMedium.addItems(DummyData.generateListMovie())
-            adapterAdapterBig.addItems(DummyData.generateListMovie())
-
-            rvNowPlaying.adapter = adapterAdapterBig
-            rvPopular.adapter = adapterMedium
-            rvTopRated.adapter = adapterMedium
-            rvUpComing.adapter = adapterMedium
-
-            rvPopular.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            rvTopRated.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            rvUpComing.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
         }
     }
 
@@ -112,6 +92,32 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
                             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                             adapterTopRated.addItems(listItem)
                             adapter = adapterTopRated
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
+        viewModel.getMovieUpComing().observe(viewLifecycleOwner){ resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterUpComing = MovieAdapterMedium(requireContext())
+                        binding.rvUpComing.apply {
+                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            adapterUpComing.addItems(listItem)
+                            adapter = adapterUpComing
                         }
                     }
                 }

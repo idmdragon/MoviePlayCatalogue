@@ -1,6 +1,5 @@
 package com.idmdragon.tv.ui
 
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseFragment
@@ -89,6 +88,37 @@ class TvFragment : BaseFragment<TvViewModel, FragmentTvBinding>() {
                 }
             }
         }
+
+        viewModel.getTvTopRated().observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterTopRated = MovieAdapterBig(requireContext())
+                        binding.rvTopRated.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                            adapterTopRated.addItems(listItem)
+                            adapter = adapterTopRated
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
 
     }
 }

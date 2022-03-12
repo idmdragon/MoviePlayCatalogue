@@ -17,5 +17,8 @@ class TvLocal(private val movieTvDao: MovieTvDao) {
     fun getTvOnTheAir(): Flow<List<MovieTvEntities>> =
         movieTvDao.getMoviesTvByType(TvType.TV_ON_THE_AIR.name)
 
+    fun getTvTopRated(): Flow<List<MovieTvEntities>> =
+        movieTvDao.getMoviesTvByType(TvType.TV_TOP_RATED.name)
+
 
 }

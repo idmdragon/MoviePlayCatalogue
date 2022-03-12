@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_tv_title_airing_today">Airing Today</string>
+    <string name="feature_tv_title_on_the_air">On The Air</string>
+    <string name="feature_tv_title_top_rated">Top Rated</string>
+    <string name="feature_tv_title_title_popular">Popular</string>
+</resources>

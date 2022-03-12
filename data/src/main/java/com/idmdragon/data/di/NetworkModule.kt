@@ -4,9 +4,11 @@ import com.idmdragon.data.BuildConfig
 import com.idmdragon.data.source.remote.MovieRemote
 import com.idmdragon.data.source.remote.PeopleRemote
 import com.idmdragon.data.source.remote.SearchRemote
+import com.idmdragon.data.source.remote.TvRemote
 import com.idmdragon.data.source.remote.service.MovieService
 import com.idmdragon.data.source.remote.service.PeopleService
 import com.idmdragon.data.source.remote.service.SearchService
+import com.idmdragon.data.source.remote.service.TvService
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,6 +41,9 @@ val retrofitModule = module {
     single {
         retrofit.create(PeopleService::class.java)
     }
+    single {
+        retrofit.create(TvService::class.java)
+    }
 }
 
 val remoteSourceModule = module {
@@ -50,5 +55,8 @@ val remoteSourceModule = module {
     }
     single {
         PeopleRemote(get())
+    }
+    single {
+        TvRemote(get())
     }
 }

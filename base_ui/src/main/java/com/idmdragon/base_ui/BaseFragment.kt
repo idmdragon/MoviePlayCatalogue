@@ -40,9 +40,9 @@ abstract class BaseFragment<VM:ViewModel, VB:ViewBinding>: Fragment() {
 
     abstract fun getViewBinding(): VB
 
-    abstract fun setUpView()
-
     abstract fun loadInjectionModule()
+
+    protected open fun setUpView(){}
 
     protected open fun setUpObserver() {}
 

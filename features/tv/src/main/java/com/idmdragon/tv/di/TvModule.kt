@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 val tvModule = module {
     viewModel {
-        TvViewModel()
+        TvViewModel(get())
     }
 }
 

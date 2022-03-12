@@ -1,6 +1,6 @@
 package com.idmdragon.domain.model
 
-data class Movie(
+data class MovieTv(
     val id: Int,
     val adult: Boolean,
     val backdropPath: String,

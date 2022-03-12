@@ -8,19 +8,19 @@ import kotlinx.coroutines.flow.Flow
 class MovieLocal(private val movieTvDao: MovieTvDao) {
 
     suspend fun insertMovie(entity: MovieTvEntities) =
-        movieTvDao.insertMovie(entity)
+        movieTvDao.insertMovieTv(entity)
 
     fun getMoviePopular(): Flow<List<MovieTvEntities>> =
-        movieTvDao.getMoviesByType(MovieType.POPULAR.name)
+        movieTvDao.getMoviesTvByType(MovieType.POPULAR.name)
 
     fun getMovieNowPlaying(): Flow<List<MovieTvEntities>> =
-        movieTvDao.getMoviesByType(MovieType.NOW_PLAYING.name)
+        movieTvDao.getMoviesTvByType(MovieType.NOW_PLAYING.name)
 
     fun getMovieTopRated(): Flow<List<MovieTvEntities>> =
-        movieTvDao.getMoviesByType(MovieType.TOP_RATED.name)
+        movieTvDao.getMoviesTvByType(MovieType.TOP_RATED.name)
 
     fun getMovieUpcoming(): Flow<List<MovieTvEntities>> =
-        movieTvDao.getMoviesByType(MovieType.UPCOMING.name)
+        movieTvDao.getMoviesTvByType(MovieType.UPCOMING.name)
 
     fun getMovieDetail(movieId: Int): Flow<MovieTvEntities> =
         movieTvDao.getMovieDetail(movieId)

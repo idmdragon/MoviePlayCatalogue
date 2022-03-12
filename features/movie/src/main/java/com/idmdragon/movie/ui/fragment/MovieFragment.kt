@@ -7,7 +7,6 @@ import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movie.databinding.FragmentMovieBinding
 import com.idmdragon.movie.di.movieModule
 import com.idmdragon.movie.ui.viewModels.MovieViewModel
-import com.idmdragon.movie.utils.DummyData
 import com.idmdragon.movieplay.ui.adapter.MovieAdapterBig
 import com.idmdragon.movieplay.ui.adapter.MovieAdapterMedium
 import org.koin.androidx.viewmodel.ext.android.viewModel

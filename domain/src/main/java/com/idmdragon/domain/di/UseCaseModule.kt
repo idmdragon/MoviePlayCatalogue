@@ -14,4 +14,7 @@ val useCaseModule = module {
     factory<PeopleUseCase> {
         PeopleUseCaseImpl(get())
     }
+    factory<TvUseCase> {
+        TvUseCaseImpl(get())
+    }
 }

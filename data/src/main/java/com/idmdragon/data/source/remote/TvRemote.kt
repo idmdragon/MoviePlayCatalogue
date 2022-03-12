@@ -52,7 +52,7 @@ class TvRemote(private val tvService: TvService) {
             }
         }.flowOn(Dispatchers.IO)
 
-    fun getMovieById(tvId:Int): Flow<ApiResponse<MovieTvResponse>> =
+    fun getDetailTv(tvId:Int): Flow<ApiResponse<MovieTvResponse>> =
         flow {
             try {
                 val response = tvService.getDetailTv(tvId, BuildConfig.API_KEY)

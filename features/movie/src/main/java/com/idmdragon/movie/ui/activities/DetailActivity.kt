@@ -8,7 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseActivity
-import com.idmdragon.domain.model.Movie
+import com.idmdragon.domain.model.MovieTv
 import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movie.databinding.ActivityDetailBinding
 import com.idmdragon.movie.di.movieModule
@@ -28,7 +28,6 @@ class DetailActivity : BaseActivity<DetailViewModels, ActivityDetailBinding>() {
     override fun loadInjectionModule() {
         loadKoinModules(movieModule)
     }
-
 
     override fun setUpObserver() {
         viewModel.processIntent(intent)
@@ -58,9 +57,9 @@ class DetailActivity : BaseActivity<DetailViewModels, ActivityDetailBinding>() {
             }
     }
 
-    private fun populateData(movie: Movie) {
+    private fun populateData(movieTv: MovieTv) {
         binding.apply {
-            with(movie) {
+            with(movieTv) {
                 tvMovieTitle.text = originalTitle
                 tvOverview.text = overview
                 tvPopularity.text = popularity.toString()

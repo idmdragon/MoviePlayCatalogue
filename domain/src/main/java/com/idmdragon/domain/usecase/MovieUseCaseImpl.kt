@@ -1,24 +1,24 @@
 package com.idmdragon.domain.usecase
 
-import com.idmdragon.domain.model.Movie
+import com.idmdragon.domain.model.MovieTv
 import com.idmdragon.domain.repository.MovieRepository
 import com.idmdragon.domain.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 class MovieUseCaseImpl(private val movieRepository: MovieRepository) : MovieUseCase {
 
-    override fun getMovieNowPlaying(): Flow<Resource<List<Movie>>> =
+    override fun getMovieNowPlaying(): Flow<Resource<List<MovieTv>>> =
         movieRepository.getMovieNowPlaying()
 
-    override fun getMoviePopular(): Flow<Resource<List<Movie>>> =
+    override fun getMoviePopular(): Flow<Resource<List<MovieTv>>> =
         movieRepository.getMoviePopular()
 
-    override fun getMovieTopRated(): Flow<Resource<List<Movie>>> =
+    override fun getMovieTopRated(): Flow<Resource<List<MovieTv>>> =
         movieRepository.getMovieTopRated()
 
-    override fun getMovieUpcoming(): Flow<Resource<List<Movie>>> =
+    override fun getMovieUpcoming(): Flow<Resource<List<MovieTv>>> =
         movieRepository.getMovieUpcoming()
 
-    override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<Movie>> =
+    override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<MovieTv>> =
         movieRepository.getMovieDetail(movieId = movieId, movieType = movieType)
 }

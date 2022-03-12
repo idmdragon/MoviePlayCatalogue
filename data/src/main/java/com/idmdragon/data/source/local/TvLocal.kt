@@ -1,0 +1,18 @@
+package com.idmdragon.data.source.local
+
+import com.idmdragon.data.source.local.dao.MovieTvDao
+import com.idmdragon.data.source.local.entities.MovieTvEntities
+import com.idmdragon.data.utils.MovieType
+import com.idmdragon.data.utils.TvType
+import kotlinx.coroutines.flow.Flow
+
+class TvLocal(private val movieTvDao: MovieTvDao) {
+
+    suspend fun insertTv(entity: MovieTvEntities) =
+        movieTvDao.insertMovieTv(entity)
+
+    fun getTvAiringToday(): Flow<List<MovieTvEntities>> =
+        movieTvDao.getMoviesTvByType(TvType.TV_AIRING_TODAY.name)
+
+
+}

@@ -3,6 +3,7 @@ package com.idmdragon.data.di
 import androidx.room.Room
 import com.idmdragon.data.source.local.MovieLocal
 import com.idmdragon.data.source.local.MoviePlayDatabase
+import com.idmdragon.data.source.local.TvLocal
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -22,6 +23,9 @@ val databaseModule = module {
 val localSourceModule = module {
     single {
         MovieLocal( get())
+    }
+    single {
+        TvLocal( get())
     }
 
 }

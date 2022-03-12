@@ -17,12 +17,6 @@ class TvFragment : BaseFragment<TvViewModel, FragmentTvBinding>() {
     override fun getViewBinding(): FragmentTvBinding =
         FragmentTvBinding.inflate(layoutInflater)
 
-    override fun setUpView() {
-        binding.apply {
-
-        }
-    }
-
     override fun loadInjectionModule() {
         loadKoinModules(tvModule)
     }
@@ -72,6 +66,35 @@ class TvFragment : BaseFragment<TvViewModel, FragmentTvBinding>() {
                             )
                             adapterOnTheAIr.addItems(listItem)
                             adapter = adapterOnTheAIr
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+        viewModel.getTvPopular().observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterPopular = MovieAdapterBig(requireContext())
+                        binding.rvPopular.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                            adapterPopular.addItems(listItem)
+                            adapter = adapterPopular
                         }
                     }
                 }

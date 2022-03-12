@@ -16,5 +16,6 @@ data class MovieTvResponse(
     val vote_average: Double,
     val vote_count: Int,
     val name: String?,
-    val original_name:String?
+    val original_name:String?,
+    val first_air_date:String?
 )

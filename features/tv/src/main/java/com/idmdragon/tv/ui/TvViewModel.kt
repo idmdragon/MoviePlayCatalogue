@@ -11,4 +11,7 @@ class TvViewModel(private val tvUseCase: TvUseCase) : ViewModel() {
 
     fun getTvAiringToday() : LiveData<Resource<List<MovieTv>>> =
         tvUseCase.getTvAiringToday().asLiveData()
+
+    fun getTvOnTheAir() : LiveData<Resource<List<MovieTv>>> =
+        tvUseCase.getTvOnTheAir().asLiveData()
 }

@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16x"
             android:paddingStart="@dimen/dimen_16x"
-            android:paddingBottom="@dimen/dimen_56x"
             android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@id/tvOnTheAir"
             tools:ignore="RtlSymmetry" />

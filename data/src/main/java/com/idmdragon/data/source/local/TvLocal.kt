@@ -14,5 +14,8 @@ class TvLocal(private val movieTvDao: MovieTvDao) {
     fun getTvAiringToday(): Flow<List<MovieTvEntities>> =
         movieTvDao.getMoviesTvByType(TvType.TV_AIRING_TODAY.name)
 
+    fun getTvOnTheAir(): Flow<List<MovieTvEntities>> =
+        movieTvDao.getMoviesTvByType(TvType.TV_ON_THE_AIR.name)
+
 
 }

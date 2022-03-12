@@ -37,9 +37,23 @@ class TvRepositoryImpl(
             }
         }.asFlow()
 
-    override fun getTvOnTheAir(): Flow<Resource<List<MovieTv>>> {
-        TODO("Not yet implemented")
-    }
+    override fun getTvOnTheAir(): Flow<Resource<List<MovieTv>>> =
+        object : NetworkBoundResource<List<MovieTv>, List<MovieTvResponse>>() {
+            override fun loadFromDB(): Flow<List<MovieTv>> =
+                local.getTvOnTheAir().toFlowModels()
+
+            override fun shouldFetch(data: List<MovieTv>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieTvResponse>>> =
+                remote.getTvOnTheAir()
+
+            override suspend fun saveCallResult(data: List<MovieTvResponse>) {
+                data.map {
+                    local.insertTv(it.toEntities(TvType.TV_ON_THE_AIR.name))
+                }
+            }
+        }.asFlow()
 
     override fun getTvTopRated(): Flow<Resource<List<MovieTv>>> {
         TODO("Not yet implemented")

@@ -59,5 +59,36 @@ class TvFragment : BaseFragment<TvViewModel, FragmentTvBinding>() {
                 }
             }
         }
+
+        viewModel.getTvOnTheAir().observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { listItem ->
+                        val adapterOnTheAIr = MovieAdapterBig(requireContext())
+                        binding.rvOnTheAir.apply {
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                            adapterOnTheAIr.addItems(listItem)
+                            adapter = adapterOnTheAIr
+                        }
+                    }
+                }
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        resource.message.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
     }
 }

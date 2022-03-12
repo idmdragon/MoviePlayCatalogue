@@ -15,17 +15,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search"
-        android:title="@string/title_search"
-        app:showAsAction="ifRoom" />
-
-
-    <item
         android:id="@+id/navigation_people"
         android:icon="@drawable/ic_people"
         android:title="@string/title_people"
         app:showAsAction="ifRoom" />
-
 
 </menu>

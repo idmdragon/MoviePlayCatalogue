@@ -1,7 +1,5 @@
-package com.idmdragon.search.ui
+package com.idmdragon.search.ui.activity
 
-
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -9,9 +7,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.idmdragon.base_ui.BaseFragment
-import com.idmdragon.search.databinding.FragmentSearchBinding
+import com.google.android.material.snackbar.Snackbar
+import com.idmdragon.base_ui.BaseActivity
+import com.idmdragon.search.databinding.ActivitySearchBinding
 import com.idmdragon.search.di.searchModule
+import com.idmdragon.search.ui.SearchViewModel
 import com.idmdragon.search.ui.adapter.SearchListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -19,29 +19,21 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
-class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
-
+class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
     override val viewModel: SearchViewModel by viewModel()
     private val listAdapter by lazy {
         SearchListAdapter().apply {
             onUserClickListener = {
-
             }
         }
     }
-    override fun getViewBinding(): FragmentSearchBinding =
-        FragmentSearchBinding.inflate(layoutInflater)
 
-    override fun setUpView() {
-        binding.apply {
-
-        }
-    }
+    override fun getViewBinding(): ActivitySearchBinding =
+        ActivitySearchBinding.inflate(layoutInflater)
 
     override fun loadInjectionModule() {
         loadKoinModules(searchModule)
     }
-
 
     override fun setUpListener() {
         super.setUpListener()
@@ -54,15 +46,15 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         })
     }
 
-    private fun loadSearchItem(query: String){
-        viewModel.searchMovieTv(query).observe(this){ listItem ->
+    private fun loadSearchItem(query: String) {
+        viewModel.searchMovieTv(query).observe(this) { listItem ->
             lifecycleScope.launch {
                 binding.rvSearch.apply {
                     adapter = listAdapter
-                    layoutManager = LinearLayoutManager(requireContext())
+                    layoutManager = LinearLayoutManager(this@SearchActivity)
                 }
-                listAdapter.apply {
 
+                listAdapter.apply {
                     addLoadStateListener { loadState ->
                         loadState.decideOnState(
                             showLoading = { visible ->
@@ -71,7 +63,11 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
                             showEmptyState = { visible ->
                             },
                             showError = { message ->
-                                Log.e("Message","message $message")
+                                Snackbar.make(
+                                    binding.root,
+                                    message,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
                             }
                         )
                     }
@@ -80,12 +76,11 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
                     loadStateFlow.distinctUntilChanged()
                     loadStateFlow
                         .collectLatest {
-                            if(it.refresh is LoadState.NotLoading){
+                            if (it.refresh is LoadState.NotLoading) {
                                 showProgressBar(false)
                             }
                         }
                 }
-
 
             }
         }
@@ -98,7 +93,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
     ) {
         showLoading(refresh is LoadState.Loading)
 
-        showEmptyState( source.append is LoadState.NotLoading
+        showEmptyState(
+            source.append is LoadState.NotLoading
                     && source.append.endOfPaginationReached
                     && listAdapter.itemCount == 0
         )
@@ -113,7 +109,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         errorState?.let { showError(it.error.toString()) }
     }
 
-    private fun showProgressBar(state: Boolean){
+    private fun showProgressBar(state: Boolean) {
         binding.progressBar.isVisible = state
     }
 

@@ -10,6 +10,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="poster">cd_poster</string>
     <string name="cd_poster">Poster</string>
+    <string name="cd_back">Button Back</string>
     <string name="cd_logo">Logo</string>
 
 </resources>

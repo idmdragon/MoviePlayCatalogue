@@ -18,11 +18,6 @@
         tools:layout="@layout/fragment_movie" />
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.idmdragon.search.ui.SearchFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_search" />
-    <fragment
         android:id="@+id/navigation_people"
         android:name="com.idmdragon.people.ui.PeopleFragment"
         android:label="fragment_people"

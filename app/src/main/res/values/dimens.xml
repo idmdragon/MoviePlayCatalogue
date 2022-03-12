@@ -7,6 +7,7 @@
     <dimen name="dimen_0x">0dp</dimen>
     <dimen name="dimen_8x">8dp</dimen>
     <dimen name="text_size_16x">16sp</dimen>
+    <dimen name="text_size_18x">18sp</dimen>
     <dimen name="text_size_20x">20sp</dimen>
     <dimen name="dimen_128x">128dp</dimen>
     <dimen name="dimen_156x">156dp</dimen>

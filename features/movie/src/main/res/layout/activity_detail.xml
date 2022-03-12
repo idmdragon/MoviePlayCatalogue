@@ -44,9 +44,8 @@
             android:id="@+id/ivPoster"
             android:layout_width="match_parent"
             android:layout_height="370dp"
-            android:layout_marginStart="@dimen/dimen_32x"
+            android:layout_marginHorizontal="@dimen/dimen_24x"
             android:layout_marginTop="@dimen/dimen_24x"
-            android:layout_marginEnd="32dp"
             android:contentDescription="@string/cd_poster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,10 +54,10 @@
 
         <TextView
             android:id="@+id/tvMovieTitle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimen_0x"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="@dimen/dimen_12x"
+            android:layout_marginEnd="@dimen/dimen_32x"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_18x"
             android:textStyle="bold|italic"
@@ -70,10 +69,10 @@
 
         <TextView
             android:id="@+id/tvOverview"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimen_0x"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="@dimen/dimen_x4"
+            android:layout_marginEnd="@dimen/dimen_32x"
             android:textColor="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -1,6 +1,7 @@
 package com.idmdragon.movieplay.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,17 +13,31 @@ import com.idmdragon.base_ui.BaseRecyclerViewAdapter
 import com.idmdragon.domain.model.Movie
 import com.idmdragon.movieplay.BuildConfig
 import com.idmdragon.movieplay.R
+import com.idmdragon.movieplay.constant.ConstantExtras
+import com.idmdragon.movieplay.constant.ConstantPage
 import com.idmdragon.movieplay.databinding.ItemCoverBigBinding
-import com.idmdragon.movieplay.databinding.ItemCoverBinding
 
-class MovieAdapterBig(private val context: Context) : BaseRecyclerViewAdapter<Movie, ItemCoverBigBinding>() {
+class MovieAdapterBig(private val context: Context) :
+    BaseRecyclerViewAdapter<Movie, ItemCoverBigBinding>() {
 
     override fun getViewBinding(parent: ViewGroup): ItemCoverBigBinding =
         ItemCoverBigBinding.inflate(LayoutInflater.from(context), parent, false)
 
     override fun bindItem(binding: ItemCoverBigBinding, item: Movie, position: Int) {
         binding.apply {
-            with(item){
+            with(item) {
+
+                root.setOnClickListener {
+                    context.startActivity(
+                        Intent(
+                            context,
+                            Class.forName(ConstantPage.PAGE_DETAIL_ACTIVITY)
+                        ).apply {
+                            putExtra(ConstantExtras.EXTRAS_MOVIE_ID,item.id)
+                            putExtra(ConstantExtras.EXTRAS_MOVIE_TYPE,item.movieType)
+                        }
+                    )
+                }
 
                 Glide.with(context)
                     .load(BuildConfig.BASE_IMAGE_URL + posterPath)

@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertListMovie(entities: List<MovieEntities>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovie(entities: MovieEntities)
 
     @Query("SELECT * FROM MovieEntities WHERE movie_type = :type")
     fun getMoviesByType(type: String): Flow<List<MovieEntities>>
+
+    @Query("SELECT * FROM MovieEntities WHERE id = :movieId")
+    fun getMovieDetail(movieId: Int): Flow<MovieEntities>
 
 }

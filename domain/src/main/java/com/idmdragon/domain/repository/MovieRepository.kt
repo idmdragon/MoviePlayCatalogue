@@ -9,4 +9,5 @@ interface MovieRepository {
     fun getMoviePopular(): Flow<Resource<List<Movie>>>
     fun getMovieTopRated(): Flow<Resource<List<Movie>>>
     fun getMovieUpcoming(): Flow<Resource<List<Movie>>>
+    fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<Movie>>
 }

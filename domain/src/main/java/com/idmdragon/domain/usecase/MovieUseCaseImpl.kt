@@ -19,4 +19,6 @@ class MovieUseCaseImpl(private val movieRepository: MovieRepository) : MovieUseC
     override fun getMovieUpcoming(): Flow<Resource<List<Movie>>> =
         movieRepository.getMovieUpcoming()
 
+    override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<Movie>> =
+        movieRepository.getMovieDetail(movieId = movieId, movieType = movieType)
 }

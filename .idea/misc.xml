@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_movie_active.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_movie_inactive.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_people.xml" value="0.198" />
+        <entry key="app/src/main/res/drawable/ic_star.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_tv.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_tv_active.xml" value="0.198" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
@@ -22,6 +23,7 @@
         <entry key="app/src/main/res/layout/item_cover_big.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/layout/item_movie.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.26614583333333336" />
+        <entry key="features/movie/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="features/movie/src/main/res/layout/as.xml" value="0.18177083333333333" />
         <entry key="features/movie/src/main/res/layout/fragment_movie.xml" value="0.18177083333333333" />
         <entry key="features/people/src/main/res/layout/as.xml" value="0.18177083333333333" />

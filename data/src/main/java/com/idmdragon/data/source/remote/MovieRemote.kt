@@ -51,4 +51,14 @@ class MovieRemote(private val movieService: MovieService) {
             }
         }.flowOn(Dispatchers.IO)
 
+    fun getMovieById(movieId:Int): Flow<ApiResponse<MovieResponse>> =
+        flow {
+            try {
+                val response = movieService.getDetailMovie(movieId, BuildConfig.API_KEY)
+                emit(ApiResponse.Success(response))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
 }

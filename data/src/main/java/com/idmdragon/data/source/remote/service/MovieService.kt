@@ -4,6 +4,7 @@ import com.idmdragon.data.source.remote.response.GeneralResponse
 import com.idmdragon.data.source.remote.response.MovieResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieService {
@@ -32,4 +33,11 @@ interface MovieService {
         api_key: String
     ): GeneralResponse<MovieResponse>
 
+    @GET("/3/movie/{movie_id}")
+    suspend fun getDetailMovie(
+        @Path("movie_id")
+        movieId: Int,
+        @Query("api_key")
+        api_key: String
+    ): MovieResponse
 }

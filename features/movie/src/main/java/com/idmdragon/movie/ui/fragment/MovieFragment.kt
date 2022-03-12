@@ -13,7 +13,7 @@ import com.idmdragon.movieplay.ui.adapter.MovieAdapterMedium
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
-class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
+class MovieFragment : BaseFragment<MovieViewModel, FragmentMovieBinding>() {
 
     override val viewModel: MovieViewModel by viewModel()
 
@@ -24,24 +24,23 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
         loadKoinModules(movieModule)
     }
 
-    override fun setUpView() {
-        binding.apply {
-        }
-    }
-
     override fun setUpObserver() {
         super.setUpObserver()
-        viewModel.getMovieNowPlaying().observe(viewLifecycleOwner){ resource ->
+        viewModel.getMovieNowPlaying().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { listItem ->
                         val adapterNowPlaying = MovieAdapterBig(requireContext())
                         binding.rvNowPlaying.apply {
-                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             adapterNowPlaying.addItems(listItem)
                             adapter = adapterNowPlaying
                         }
-                     }
+                    }
                 }
                 is Resource.Loading -> {
 
@@ -57,13 +56,17 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
-        viewModel.getMoviePopular().observe(viewLifecycleOwner){ resource ->
+        viewModel.getMoviePopular().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { listItem ->
                         val adapterPopular = MovieAdapterMedium(requireContext())
                         binding.rvPopular.apply {
-                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             adapterPopular.addItems(listItem)
                             adapter = adapterPopular
                         }
@@ -83,13 +86,17 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
-        viewModel.getMovieTopRated().observe(viewLifecycleOwner){ resource ->
+        viewModel.getMovieTopRated().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { listItem ->
                         val adapterTopRated = MovieAdapterMedium(requireContext())
                         binding.rvTopRated.apply {
-                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             adapterTopRated.addItems(listItem)
                             adapter = adapterTopRated
                         }
@@ -109,13 +116,17 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
-        viewModel.getMovieUpComing().observe(viewLifecycleOwner){ resource ->
+        viewModel.getMovieUpComing().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { listItem ->
                         val adapterUpComing = MovieAdapterMedium(requireContext())
                         binding.rvUpComing.apply {
-                            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                            layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             adapterUpComing.addItems(listItem)
                             adapter = adapterUpComing
                         }
@@ -135,7 +146,7 @@ class MovieFragment : BaseFragment<MovieViewModel,FragmentMovieBinding>() {
             }
         }
 
-        }
     }
+}
 
 

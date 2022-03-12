@@ -40,6 +40,11 @@ fun MovieEntities.toModel(): Movie =
         movieType = movie_type
     )
 
+fun Flow<MovieEntities>.toFlowModel(): Flow<Movie> =
+    this.map {
+        it.toModel()
+    }
+
 fun List<MovieEntities>.toModels(): List<Movie> =
     this.map {
         it.toModel()

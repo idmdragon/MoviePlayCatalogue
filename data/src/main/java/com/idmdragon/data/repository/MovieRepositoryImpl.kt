@@ -1,6 +1,7 @@
 package com.idmdragon.data.repository
 
 import com.idmdragon.data.mapper.toEntities
+import com.idmdragon.data.mapper.toFlowModel
 import com.idmdragon.data.mapper.toFlowModels
 import com.idmdragon.data.source.NetworkBoundResource
 import com.idmdragon.data.source.local.MovieLocal
@@ -88,6 +89,22 @@ class MovieRepositoryImpl(
                 data.map {
                     local.insertMovie(it.toEntities(MovieType.UPCOMING.name))
                 }
+            }
+        }.asFlow()
+
+    override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<Movie>> =
+        object : NetworkBoundResource <Movie, MovieResponse>() {
+            override fun loadFromDB(): Flow<Movie> =
+                local.getMovieDetail(movieId).toFlowModel()
+
+            override fun shouldFetch(data: Movie?): Boolean =
+                data == null
+
+            override suspend fun createCall(): Flow<ApiResponse<MovieResponse>> =
+                remote.getMovieById(movieId)
+
+            override suspend fun saveCallResult(data: MovieResponse) {
+                    local.insertMovie(data.toEntities(movieType))
             }
         }.asFlow()
 }

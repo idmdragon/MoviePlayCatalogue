@@ -7,9 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class MovieLocal(private val movieDao: MovieDao) {
 
-    suspend fun insertListMovie(entities: List<MovieEntities>) =
-        movieDao.insertListMovie(entities)
-
     suspend fun insertMovie(entity: MovieEntities) =
         movieDao.insertMovie(entity)
 
@@ -24,4 +21,7 @@ class MovieLocal(private val movieDao: MovieDao) {
 
     fun getMovieUpcoming(): Flow<List<MovieEntities>> =
         movieDao.getMoviesByType(MovieType.UPCOMING.name)
+
+    fun getMovieDetail(movieId: Int): Flow<MovieEntities> =
+        movieDao.getMovieDetail(movieId)
 }

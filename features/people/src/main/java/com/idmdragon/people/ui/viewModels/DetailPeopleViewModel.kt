@@ -1,10 +1,9 @@
-package com.idmdragon.people.ui.activites
+package com.idmdragon.people.ui.viewModels
 
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.idmdragon.domain.model.MovieTv
 import com.idmdragon.domain.model.People
 import com.idmdragon.domain.usecase.PeopleUseCase
 import com.idmdragon.domain.utils.Resource

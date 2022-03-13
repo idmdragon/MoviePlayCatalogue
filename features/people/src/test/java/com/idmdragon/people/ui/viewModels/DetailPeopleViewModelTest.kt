@@ -1,13 +1,13 @@
-package com.idmdragon.movie.ui.viewModels
+package com.idmdragon.people.ui.viewModels
 
 import android.content.Intent
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.idmdragon.domain.model.MovieTv
-import com.idmdragon.domain.usecase.MovieUseCase
+import com.idmdragon.domain.model.People
+import com.idmdragon.domain.usecase.PeopleUseCase
 import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movieplay.constant.ConstantExtras
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +17,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,9 +29,9 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class DetailViewModelTest {
+class DetailPeopleViewModelTest {
 
-    private lateinit var viewModel: DetailViewModel
+    private lateinit var viewModel: DetailPeopleViewModel
 
     @get:Rule
     val instantExecutor = InstantTaskExecutorRule()
@@ -48,7 +49,7 @@ class DetailViewModelTest {
     }
 
     @Mock
-    private lateinit var useCase: MovieUseCase
+    private lateinit var useCase: PeopleUseCase
 
     @Mock
     private lateinit var fakeItems: MovieTv
@@ -56,43 +57,42 @@ class DetailViewModelTest {
     @Mock
     private lateinit var mockIntent: Intent
 
-    private var movieId: Int = 2
-    private var movieType: String = "TYPE_POPULAR"
+    private var personId: Int = 2
 
-    private val flowData: Flow<Resource<MovieTv>> = flow { Resource.Success(fakeItems) }
+    private val flowData: Flow<Resource<People>> = flow { Resource.Success(fakeItems) }
 
     @Mock
-    private lateinit var observer: Observer<Resource<MovieTv>>
+    private lateinit var observer: Observer<Resource<People>>
 
     @Before
     fun setUp() {
-        viewModel = DetailViewModel(useCase)
+        viewModel = DetailPeopleViewModel(useCase)
     }
 
     @Test
     fun `verify default value null`() {
-        assertEquals(viewModel.movieId,null)
-        assertEquals(viewModel.movieType,null)
+        assertEquals(viewModel.personId, null)
     }
 
     @Test
     fun  `verify processIntent`() {
         viewModel.processIntent(mockIntent)
-
         mockIntent.apply {
-            viewModel.movieId = getIntExtra(ConstantExtras.EXTRAS_MOVIE_ID,0)
-            viewModel.movieType = getStringExtra(ConstantExtras.EXTRAS_MOVIE_TYPE)
+            viewModel.personId = getIntExtra(ConstantExtras.EXTRAS_PEOPLE_ID,0)
+            assertEquals(
+                viewModel.personId,
+                mockIntent.getIntExtra(ConstantExtras.EXTRAS_PEOPLE_ID, 0)
+            )
         }
-        assertEquals(viewModel.movieId,mockIntent.getIntExtra(ConstantExtras.EXTRAS_MOVIE_ID,0))
-        assertEquals(viewModel.movieType,mockIntent.getStringExtra(ConstantExtras.EXTRAS_MOVIE_TYPE))
+
     }
 
     @Test
     fun `verify getMovieUpcoming success`() = runBlockingTest {
 
-        `when`(useCase.getMovieDetail(movieId,movieType)).thenReturn(flowData)
-        viewModel.getDetailMovie(movieId,movieType).observeForever(observer)
+        `when`(useCase.getPersonById(personId)).thenReturn(flowData)
+        viewModel.getPersonById(personId).observeForever(observer)
 
-        verify(useCase).getMovieDetail(movieId,movieType)
+        verify(useCase).getPersonById(personId)
     }
 }

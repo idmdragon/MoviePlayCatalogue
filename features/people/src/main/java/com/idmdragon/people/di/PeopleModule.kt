@@ -1,6 +1,6 @@
 package com.idmdragon.people.di
 
-import com.idmdragon.people.ui.activites.DetailPeopleViewModel
+import com.idmdragon.people.ui.viewModels.DetailPeopleViewModel
 import com.idmdragon.people.ui.viewModels.PeopleViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

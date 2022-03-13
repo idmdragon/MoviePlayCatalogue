@@ -14,6 +14,7 @@ import com.idmdragon.movieplay.BuildConfig
 import com.idmdragon.movieplay.R
 import com.idmdragon.people.databinding.ActivityDetailPeopleBinding
 import com.idmdragon.people.di.peopleModule
+import com.idmdragon.people.ui.viewModels.DetailPeopleViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 

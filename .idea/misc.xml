@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.209" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.198" />
+        <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.194" />
         <entry key="app/src/main/res/drawable/ic_movie.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_movie_active.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_movie_inactive.xml" value="0.198" />

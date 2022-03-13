@@ -21,4 +21,7 @@ class MovieUseCaseImpl(private val movieRepository: MovieRepository) : MovieUseC
 
     override fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<MovieTv>> =
         movieRepository.getMovieDetail(movieId = movieId, movieType = movieType)
+
+    override fun clearData() : Unit =
+        movieRepository.clearData()
 }

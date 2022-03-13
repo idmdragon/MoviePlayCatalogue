@@ -24,4 +24,7 @@ class MovieLocal(private val movieTvDao: MovieTvDao) {
 
     fun getMovieDetail(movieId: Int): Flow<MovieTvEntities> =
         movieTvDao.getMovieDetail(movieId)
+
+    suspend fun clearMovieTvTable() =
+        movieTvDao.clearMovieTvTable()
 }

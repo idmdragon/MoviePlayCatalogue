@@ -10,5 +10,5 @@ interface MovieUseCase {
     fun getMovieTopRated(): Flow<Resource<List<MovieTv>>>
     fun getMovieUpcoming(): Flow<Resource<List<MovieTv>>>
     fun getMovieDetail(movieId: Int, movieType: String): Flow<Resource<MovieTv>>
-
+    fun clearData()
 }

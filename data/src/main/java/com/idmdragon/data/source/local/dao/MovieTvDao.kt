@@ -19,4 +19,7 @@ interface MovieTvDao {
     @Query("SELECT * FROM MovieTvEntities WHERE id = :movieId")
     fun getMovieDetail(movieId: Int): Flow<MovieTvEntities>
 
+    @Query("DELETE FROM MovieTvEntities")
+    suspend fun clearMovieTvTable()
+
 }

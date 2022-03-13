@@ -12,7 +12,10 @@ import com.idmdragon.data.utils.MovieType
 import com.idmdragon.domain.model.MovieTv
 import com.idmdragon.domain.repository.MovieRepository
 import com.idmdragon.domain.utils.Resource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 class MovieRepositoryImpl(
     private val remote: MovieRemote,
@@ -106,4 +109,10 @@ class MovieRepositoryImpl(
                     local.insertMovie(data.toEntities(movieType))
             }
         }.asFlow()
+
+    override fun clearData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            local.clearMovieTvTable()
+        }
+    }
 }

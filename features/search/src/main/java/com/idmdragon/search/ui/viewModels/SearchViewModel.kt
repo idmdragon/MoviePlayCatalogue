@@ -1,4 +1,4 @@
-package com.idmdragon.search.ui
+package com.idmdragon.search.ui.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

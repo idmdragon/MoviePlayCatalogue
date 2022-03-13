@@ -1,5 +1,6 @@
 package com.idmdragon.search.ui.activity
 
+import android.content.Intent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -10,9 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseActivity
 import com.idmdragon.base_ui.gone
+import com.idmdragon.base_ui.show
+import com.idmdragon.movieplay.constant.ConstantExtras
+import com.idmdragon.movieplay.constant.ConstantPage
+import com.idmdragon.movieplay.constant.ConstantVariable
+import com.idmdragon.search.R
 import com.idmdragon.search.databinding.ActivitySearchBinding
 import com.idmdragon.search.di.searchModule
-import com.idmdragon.search.ui.SearchViewModel
+import com.idmdragon.search.ui.viewModels.SearchViewModel
 import com.idmdragon.search.ui.adapter.SearchListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -24,7 +30,18 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
     override val viewModel: SearchViewModel by viewModel()
     private val listAdapter by lazy {
         SearchListAdapter().apply {
-            onUserClickListener = {
+            onUserClickListener = { id , mediaType ->
+                if (mediaType == ConstantVariable.CONS_PERSON){
+                    startActivity(
+                        Intent(this@SearchActivity, Class.forName(ConstantPage.PAGE_DETAIL_PERSON))
+                            .putExtra(ConstantExtras.EXTRAS_PEOPLE_ID,id)
+                    )
+                }else{
+                    startActivity(
+                        Intent(this@SearchActivity, Class.forName(ConstantPage.PAGE_DETAIL_MOVIE))
+                            .putExtra(ConstantExtras.EXTRAS_MOVIE_ID,id)
+                    )
+                }
             }
         }
     }
@@ -66,7 +83,8 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
                                 showProgressBar(visible)
                                 binding.ivSearch.gone()
                             },
-                            showEmptyState = { visible ->
+                            showEmptyState = {
+
                             },
                             showError = { message ->
                                 binding.ivSearch.gone()
@@ -85,6 +103,14 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
                         .collectLatest {
                             if (it.refresh is LoadState.NotLoading) {
                                 showProgressBar(false)
+                                if (itemCount==0){
+                                    Snackbar.make(
+                                        binding.root,
+                                        getString(R.string.message_empty_search),
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                    binding.ivSearch.show()
+                                }
                             }
                         }
                 }

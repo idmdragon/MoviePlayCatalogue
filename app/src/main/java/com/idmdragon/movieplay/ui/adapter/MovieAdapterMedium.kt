@@ -31,7 +31,7 @@ class MovieAdapterMedium(private val context: Context) : BaseRecyclerViewAdapter
                     context.startActivity(
                         Intent(
                             context,
-                            Class.forName(ConstantPage.PAGE_DETAIL_ACTIVITY)
+                            Class.forName(ConstantPage.PAGE_DETAIL_MOVIE)
                         ).apply {
                             putExtra(ConstantExtras.EXTRAS_MOVIE_ID,item.id)
                             putExtra(ConstantExtras.EXTRAS_MOVIE_TYPE,item.movieType)

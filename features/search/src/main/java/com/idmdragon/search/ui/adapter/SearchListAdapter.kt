@@ -27,7 +27,7 @@ class SearchListAdapter : PagingDataAdapter<Search, SearchListAdapter.ViewHolder
     }
 ) {
 
-    var onUserClickListener: ((Int) -> Unit)? = null
+    var onUserClickListener: ((Int, String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchListAdapter.ViewHolder {
         val itemBinding =
@@ -56,7 +56,7 @@ class SearchListAdapter : PagingDataAdapter<Search, SearchListAdapter.ViewHolder
 
                 ratingBar.rating = (item.voteAverage / 2).toFloat()
                 root.setOnClickListener {
-                    onUserClickListener?.invoke(item.id)
+                    onUserClickListener?.invoke(item.id,item.mediaType)
                 }
             }
         }

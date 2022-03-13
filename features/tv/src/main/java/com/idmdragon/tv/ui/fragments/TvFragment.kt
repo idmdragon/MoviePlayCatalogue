@@ -1,15 +1,15 @@
-package com.idmdragon.tv.ui
+package com.idmdragon.tv.ui.fragments
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseFragment
-import com.idmdragon.base_ui.gone
 import com.idmdragon.base_ui.hide
 import com.idmdragon.base_ui.show
 import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movieplay.ui.adapter.MovieAdapterLarge
 import com.idmdragon.tv.databinding.FragmentTvBinding
 import com.idmdragon.tv.di.tvModule
+import com.idmdragon.tv.ui.viewModels.TvViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 

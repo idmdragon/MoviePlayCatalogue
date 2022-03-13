@@ -1,4 +1,4 @@
-package com.idmdragon.tv.ui
+package com.idmdragon.tv.ui.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_series"
-        android:name="com.idmdragon.tv.ui.TvFragment"
+        android:name="com.idmdragon.tv.ui.fragments.TvFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_tv" />
 

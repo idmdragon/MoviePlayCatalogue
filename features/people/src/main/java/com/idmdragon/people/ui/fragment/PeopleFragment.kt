@@ -1,6 +1,7 @@
 package com.idmdragon.people.ui.fragment
 
 
+import android.content.Intent
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
@@ -8,8 +9,10 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseFragment
+import com.idmdragon.movieplay.constant.ConstantExtras.EXTRAS_PEOPLE_ID
 import com.idmdragon.people.databinding.FragmentPeopleBinding
 import com.idmdragon.people.di.peopleModule
+import com.idmdragon.people.ui.activites.DetailPeopleActivity
 import com.idmdragon.people.ui.viewModels.PeopleViewModel
 import com.idmdragon.people.ui.adapter.PeopleAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -25,6 +28,9 @@ class PeopleFragment : BaseFragment<PeopleViewModel, FragmentPeopleBinding>() {
     private val listAdapter by lazy {
         PeopleAdapter().apply {
             onClickListener = {
+                startActivity(Intent(requireContext(),DetailPeopleActivity::class.java)
+                    .putExtra(EXTRAS_PEOPLE_ID,it)
+                )
             }
         }
     }

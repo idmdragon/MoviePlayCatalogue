@@ -3,17 +3,17 @@ package com.idmdragon.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.idmdragon.data.mapper.toModel
 import com.idmdragon.data.mapper.toModels
+import com.idmdragon.data.source.NetworkResource
 import com.idmdragon.data.source.PagingRemoteSource
 import com.idmdragon.data.source.remote.PeopleRemote
-import com.idmdragon.data.source.remote.SearchRemote
+import com.idmdragon.data.source.remote.response.ApiResponse
 import com.idmdragon.data.source.remote.response.GeneralResponse
 import com.idmdragon.data.source.remote.response.PeopleResponse
-import com.idmdragon.data.source.remote.response.SearchResponse
 import com.idmdragon.domain.model.People
-import com.idmdragon.domain.model.Search
 import com.idmdragon.domain.repository.PeopleRepository
-import com.idmdragon.domain.repository.SearchRepository
+import com.idmdragon.domain.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 class PeopleRepositoryImpl(private val remote: PeopleRemote) : PeopleRepository {
@@ -30,4 +30,13 @@ class PeopleRepositoryImpl(private val remote: PeopleRemote) : PeopleRepository 
                     response.toModels()
             }
         }.flow
+
+    override fun getPersonById(personId: Int): Flow<Resource<People>> =
+        object : NetworkResource<People, PeopleResponse>() {
+            override fun convertResponseToModel(response: PeopleResponse): People =
+                response.toModel()
+
+            override suspend fun createCall(): Flow<ApiResponse<PeopleResponse>> =
+                remote.getDetailPerson(personId)
+        }.asFlow()
 }

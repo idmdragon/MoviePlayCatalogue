@@ -7,5 +7,8 @@ data class PeopleResponse(
     val known_for_department: String,
     val name: String,
     val popularity: Double,
-    val profile_path: String?
+    val profile_path: String?,
+    val birthday: String?,
+    val biography: String?,
+    val place_of_birth: String?
 )

@@ -13,7 +13,10 @@ fun PeopleResponse.toModel(): People =
         knownForDepartment = known_for_department,
         name = name,
         gender = gender,
-        popularity = popularity
+        popularity = popularity,
+        biography = biography,
+        birthday = birthday,
+        place_of_birth = place_of_birth
     )
 
 fun List<PeopleResponse>.toModels(): List<People> =

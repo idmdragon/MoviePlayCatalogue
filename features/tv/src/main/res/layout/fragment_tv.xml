@@ -20,7 +20,7 @@
             android:textSize="@dimen/text_size_20x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAiringToday"
@@ -29,8 +29,19 @@
             android:layout_marginTop="@dimen/dimen_16x"
             android:clipToPadding="false"
             android:paddingStart="@dimen/dimen_16x"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/tvAiringToday"
             tools:ignore="RtlSymmetry" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerAiring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16x"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/tvAiringToday">
+            <include layout="@layout/layout_shimmer_large" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/tvOnTheAir"
@@ -42,17 +53,28 @@
             android:textSize="@dimen/text_size_20x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvAiringToday" />
+            app:layout_constraintTop_toBottomOf="@id/shimmerAiring" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvOnTheAir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16x"
-            android:paddingStart="@dimen/dimen_16x"
             android:clipToPadding="false"
+            android:paddingStart="@dimen/dimen_16x"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/tvOnTheAir"
             tools:ignore="RtlSymmetry" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerOnTheAir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16x"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/tvOnTheAir">
+            <include layout="@layout/layout_shimmer_large" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/tvPopular"
@@ -64,17 +86,28 @@
             android:textSize="@dimen/text_size_20x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvOnTheAir" />
+            app:layout_constraintTop_toBottomOf="@id/shimmerOnTheAir" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPopular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16x"
-            android:paddingStart="@dimen/dimen_16x"
             android:clipToPadding="false"
+            android:paddingStart="@dimen/dimen_16x"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/tvPopular"
             tools:ignore="RtlSymmetry" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerPopular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16x"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/tvPopular">
+            <include layout="@layout/layout_shimmer_large"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/tvTopRated"
@@ -86,17 +119,29 @@
             android:textSize="@dimen/text_size_20x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvPopular" />
+            app:layout_constraintTop_toBottomOf="@id/shimmerPopular" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTopRated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16x"
-            android:paddingStart="@dimen/dimen_16x"
             android:clipToPadding="false"
+            android:paddingStart="@dimen/dimen_16x"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/tvTopRated"
+            android:paddingBottom="@dimen/dimen_32x"
             tools:ignore="RtlSymmetry" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerTopRated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16x"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/tvTopRated">
+            <include layout="@layout/layout_shimmer_large" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

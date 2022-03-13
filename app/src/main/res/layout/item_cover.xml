@@ -8,5 +8,7 @@
         android:id="@+id/ivPoster"
         android:layout_width="@dimen/dimen_128x"
         android:layout_height="@dimen/dimen_156x"
-        android:contentDescription="@string/cd_poster" />
+        android:contentDescription="@string/cd_poster"
+        android:background="@color/grayDark"
+        />
 </FrameLayout>

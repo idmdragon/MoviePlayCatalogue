@@ -44,7 +44,7 @@ class PeopleAdapter : PagingDataAdapter<People, PeopleAdapter.ViewHolder>(
             with(binding) {
                 Glide.with(itemView.context)
                     .load(BuildConfig.BASE_IMAGE_URL+item.profilePath)
-                    .placeholder(ColorDrawable(ContextCompat.getColor(itemView.context, appR.color.gray)))
+                    .placeholder(ColorDrawable(ContextCompat.getColor(itemView.context, appR.color.grayDark)))
                     .transform(CenterCrop(), RoundedCorners(10))
                     .into(ivPoster)
 

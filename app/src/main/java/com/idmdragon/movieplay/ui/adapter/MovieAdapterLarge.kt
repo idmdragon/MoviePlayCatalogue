@@ -17,7 +17,7 @@ import com.idmdragon.movieplay.constant.ConstantExtras
 import com.idmdragon.movieplay.constant.ConstantPage
 import com.idmdragon.movieplay.databinding.ItemCoverBigBinding
 
-class MovieAdapterBig(private val context: Context) :
+class MovieAdapterLarge(private val context: Context) :
     BaseRecyclerViewAdapter<MovieTv, ItemCoverBigBinding>() {
 
     override fun getViewBinding(parent: ViewGroup): ItemCoverBigBinding =
@@ -41,7 +41,7 @@ class MovieAdapterBig(private val context: Context) :
 
                 Glide.with(context)
                     .load(BuildConfig.BASE_IMAGE_URL + posterPath)
-                    .placeholder(ColorDrawable(ContextCompat.getColor(context, R.color.gray)))
+                    .placeholder(ColorDrawable(ContextCompat.getColor(context, R.color.grayDark)))
                     .transform(CenterCrop(), RoundedCorners(10))
                     .into(ivPoster)
             }

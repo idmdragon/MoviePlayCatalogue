@@ -9,6 +9,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseActivity
+import com.idmdragon.base_ui.gone
 import com.idmdragon.search.databinding.ActivitySearchBinding
 import com.idmdragon.search.di.searchModule
 import com.idmdragon.search.ui.SearchViewModel
@@ -44,6 +45,10 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
             }
             false
         })
+
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun loadSearchItem(query: String) {
@@ -59,10 +64,12 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
                         loadState.decideOnState(
                             showLoading = { visible ->
                                 showProgressBar(visible)
+                                binding.ivSearch.gone()
                             },
                             showEmptyState = { visible ->
                             },
                             showError = { message ->
+                                binding.ivSearch.gone()
                                 Snackbar.make(
                                     binding.root,
                                     message,

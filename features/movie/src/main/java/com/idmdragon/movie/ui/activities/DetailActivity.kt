@@ -12,15 +12,15 @@ import com.idmdragon.domain.model.MovieTv
 import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movie.databinding.ActivityDetailBinding
 import com.idmdragon.movie.di.movieModule
-import com.idmdragon.movie.ui.viewModels.DetailViewModels
+import com.idmdragon.movie.ui.viewModels.DetailViewModel
 import com.idmdragon.movieplay.BuildConfig
 import com.idmdragon.movieplay.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
-class DetailActivity : BaseActivity<DetailViewModels, ActivityDetailBinding>() {
+class DetailActivity : BaseActivity<DetailViewModel, ActivityDetailBinding>() {
 
-    override val viewModel: DetailViewModels by viewModel()
+    override val viewModel: DetailViewModel by viewModel()
 
     override fun getViewBinding(): ActivityDetailBinding =
         ActivityDetailBinding.inflate(layoutInflater)

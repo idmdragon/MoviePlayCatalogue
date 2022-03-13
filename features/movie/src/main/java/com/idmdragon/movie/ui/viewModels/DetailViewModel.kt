@@ -9,7 +9,7 @@ import com.idmdragon.domain.usecase.MovieUseCase
 import com.idmdragon.domain.utils.Resource
 import com.idmdragon.movieplay.constant.ConstantExtras
 
-class DetailViewModels(private val useCase: MovieUseCase) : ViewModel() {
+class DetailViewModel(private val useCase: MovieUseCase) : ViewModel() {
 
     var movieId : Int? = null
     var movieType : String? = null

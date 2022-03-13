@@ -1,4 +1,4 @@
-package com.idmdragon.people.ui
+package com.idmdragon.people.ui.fragment
 
 
 import androidx.core.view.isVisible
@@ -6,11 +6,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.idmdragon.base_ui.BaseFragment
 import com.idmdragon.people.databinding.FragmentPeopleBinding
 import com.idmdragon.people.di.peopleModule
+import com.idmdragon.people.ui.viewModels.PeopleViewModel
 import com.idmdragon.people.ui.adapter.PeopleAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged

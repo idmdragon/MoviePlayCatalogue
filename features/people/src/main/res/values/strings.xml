@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="text_popular_person">Popular Person</string>
+    <string name="detail_people">Detail People</string>
+    <string name="known_for_department">Known For Department</string>
+    <string name="gender">Gender</string>
+    <string name="text_popularity">Popularity</string>
+    <string name="birthday">Birthday</string>
 </resources>

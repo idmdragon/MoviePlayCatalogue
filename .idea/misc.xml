@@ -29,6 +29,7 @@
         <entry key="features/movie/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="features/movie/src/main/res/layout/as.xml" value="0.18177083333333333" />
         <entry key="features/movie/src/main/res/layout/fragment_movie.xml" value="0.18177083333333333" />
+        <entry key="features/people/src/main/res/layout/activity_detail_people.xml" value="0.184375" />
         <entry key="features/people/src/main/res/layout/as.xml" value="0.18177083333333333" />
         <entry key="features/people/src/main/res/layout/fragment_people.xml" value="0.18177083333333333" />
         <entry key="features/people/src/main/res/layout/item_person.xml" value="0.23958333333333334" />

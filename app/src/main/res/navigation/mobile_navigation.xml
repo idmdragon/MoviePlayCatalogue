@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_people"
-        android:name="com.idmdragon.people.ui.PeopleFragment"
+        android:name="com.idmdragon.people.ui.fragment.PeopleFragment"
         android:label="fragment_people"
         tools:layout="@layout/fragment_people" />
 </navigation>

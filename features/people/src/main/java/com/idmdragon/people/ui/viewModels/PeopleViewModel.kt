@@ -1,4 +1,4 @@
-package com.idmdragon.people.ui
+package com.idmdragon.people.ui.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

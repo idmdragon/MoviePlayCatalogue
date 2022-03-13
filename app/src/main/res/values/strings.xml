@@ -12,5 +12,6 @@
     <string name="cd_poster">Poster</string>
     <string name="cd_back_button">Button Back</string>
     <string name="cd_logo">Logo</string>
+    <string name="text_press_one_again_to_exit">Tekan sekali lagi untuk keluar</string>
 
 </resources>

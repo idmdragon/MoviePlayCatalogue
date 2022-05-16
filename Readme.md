@@ -1,4 +1,3 @@
-# Take Home Test - Ilham Dwi Muchlison
 
 # Instruction to install
 0. Make sure your Emulator / Android Device have an minimum SDK 21
